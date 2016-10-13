@@ -1,0 +1,23 @@
+#this will TEST the files for top 1% of features
+perl testModels_top1pc.pl Configuration.txt
+ 
+#this will TEST the files for top 10% of features
+perl testModels_top10pc.pl Configuration.txt
+
+#this will TEST the files for the top 33% of features
+perl testModels_top33pc.pl Configuration.txt
+
+#this will TEST the files for the top 66% of features
+perl testModels_top66pc.pl Configuration.txt
+
+#this will TEST the files for the top 100% of features
+perl testModels_top100pc.pl Configuration.txt
+
+#this will TEST the files for the top 25 features
+perl testModels_top25features.pl Configuration.txt
+ 
+#this will TEST the files for the top 50 features
+perl testModels_top50features.pl Configuration.txt
+
+#this will TEST the files for the top 100 features
+perl testModels_top100features.pl Configuration.txt

@@ -1,0 +1,32 @@
+        #Helikar Lab, University of Nebraska, Lincoln  copyright 2016
+        #Developed by Greyson Biegert and Akram Mohammed
+        #GPL-3.0
+#this is a look up file to standardize the names of the feature selection algorithm result files
+#The files will be organized in the a_b_attributes.txt format. Where 'a' is the feature selection algorithm and 'b' is the method used.
+
+%Feature Selection Algorithm-method Combinations%
+Call Number	Combination
+1	Cfs Subset Evaluator + Best first
+2	Cfs Subset Evaluator + Genetic Search
+3	Cfs Subset Evaluator + Greedy Stepwise
+4	Cfs Subset Evaluator + Linear Forward Selection
+5       Relief F Attribute Evaluator + Ranker
+6       Wrapper Subset Evaluator + Subset Size Forward Selection
+7       Chi Squared Attribute Evaluator + RankeR
+8       Wrapper Subset Evaluator + Rank Search
+9       Classifier Subset Evaluator + Genetic Search
+10      SymmetricalUncertAttributeEval + Ranker
+11      Classifier Subset Evaluator + Linear Forward Selection
+12      Classifier Subset Evaluator + Rank Search
+13      Classifier Subset Evaluator + Subset Size Forward Selection
+14      Consistency Subset Evaluator + Best first
+15      Consistency Subset Evaluator + Genetic Search
+16      Wrapper Subset Evaluator + Genetic Search
+17      Consistency Subset Evaluator + Linear Forward Selection
+18      Consistency Subset Evaluator + Rank Search
+19      Consistency Subset Evaluator + Subset Size Forward Selection
+20      Filtered Attribute Evaluator + Ranker
+21      One R Attribute Evlauator + Ranker
+22	Latent Semantic Analysis + Ranker
+23	Gain Ratio Attribute Evaluator + Ranker
+

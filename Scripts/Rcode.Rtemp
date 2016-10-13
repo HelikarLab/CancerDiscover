@@ -1,0 +1,2 @@
+setwd("/work/helikarlab/dustyfuzz/data/ProjectName500/DataFiles")
+library(affy)

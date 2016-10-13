@@ -1,0 +1,8 @@
+#this records the memory usage
+echo CPU: `top -b -n1 |grep "Cpu(s)" |awk '{print $2 + $4}' ` > ../Temp/memoryUsage1_ms3.temp
+FREE_DATA=`free -m | grep Mem`
+CURRENT=`echo $FREE_DATA | cut -f3 -d' '`
+TOTAL=`echo $FREE_DATA | cut -f2 -d' '`
+echo RAM: $(echo "scale = 2; $CURRENT/$TOTAL*100"| bc) > ../Temp/memoryUsage2_ms3.temp
+cat ../Temp/memoryUsage1_ms3.temp ../Temp/memoryUsage2_ms3.temp > ../Logs/memoryUsage_ms3.txt
+

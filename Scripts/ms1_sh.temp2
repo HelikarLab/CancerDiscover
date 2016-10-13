@@ -1,0 +1,12 @@
+#building temp files for normalization and classList.txt
+perl classListMaker.pl
+bash readAffyBatchMaker.bash 
+bash RcodeTempBuilder.bash
+
+#Raw data normalization
+Rscript normalization.R
+
+end=$(date +%s)
+runTime=$((end-start))
+echo $runTime>../Logs/runTime_ms1BASH.txt
+

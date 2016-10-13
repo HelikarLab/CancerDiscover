@@ -1,0 +1,31 @@
+#Splitting the data and head sections
+perl processingBeforeTransposing.pl &
+wait
+
+#Head section completion
+perl preprocessingContinued.pl &
+wait
+
+#Data matrix transposition
+perl transposer.pl &
+wait
+
+#Addition of class variables
+perl sampleNumberClassPaster.pl &
+wait
+
+#each piece of the arrf is compiled into single file, with the correct orientation
+perl classAndDataLineMaker.pl &
+perl concatenationTRAIN.pl &
+wait
+
+#data partitioning
+perl dataPartitioning.pl Configuration.txt &
+wait
+
+#feature selection
+perl featureSelectionBASH.pl Configuration.txt
+
+end=$(date +%s)
+runTime=$((end-start))
+echo $runTime>../Logs/runTime_ms2BASH.txt 

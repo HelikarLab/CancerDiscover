@@ -1,0 +1,73 @@
+#In the line below, write out the path to the CancerDiscover directory between the " "
+pathToProject="/home/general/data/CancerDiscover"
+
+#These variables manage the normalization options. The default settings in order are quantiles, rma, pmonly, and median polish. 
+#For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf
+normMethod="quantiles"
+bgCorrectMethod="rma"
+pmCorrectMethod="pmonly"
+summaryMethod="medianpolish"
+
+#This variable manages the number of folds the user wishes to use for data partitioning. The default is 2 folds, which splits the data 50:50
+foldNumber=2
+
+#These variables manage which feature selection algorithms are performed. The Default setting will perform all possible feature selection algorithms. 
+#If you want an algorithm to be performed, write 'TRUE' next to the '=', otherwise write 'FALSE' 
+
+cfsSubsetEvaluatorBestFirst=TRUE
+
+cfsSubsetEvaluatorGeneticSearch=TRUE
+
+cfsSubsetEvaluatorGreedyStepwise=TRUE
+
+cfsSubsetEvaluatorLinearForwardSelection=TRUE
+
+ChiSquaredRanker=TRUE
+
+ClassifierSubsetEvaluatorGeneticSearch=TRUE
+
+ClassifierSubsetEvaluatorLinearForwardSelection=TRUE
+
+ClassifierSubsetEvaluatorRankSearch=TRUE
+
+ClassifierSubsetEvaluatorSubsetSizeForwardSelection=TRUE
+
+ConsistencySubsetEvlaulatorBestFirst=TRUE
+
+ConsistencySubsetEvaluatorGeneticSearch=TRUE
+
+ConsistencySubsetEvaluatorLinearForwardSelection=TRUE
+
+ConsistencySubsetEvaluatorRankSearch=TRUE
+
+ConsistencySubsetEvaluatorSubsetSizeForwardSelection=TRUE
+
+FilteredAttributeEvaluatorRanker=TRUE
+
+GainRatioAttributeEvaluatorRanker=TRUE
+
+LatentSemanticAnalysisRanker=TRUE
+
+OneRAttributeEvaluatorRanker=TRUE
+
+ReliefFAttributeEvaluatorRanker=TRUE
+
+SymmetricalUncertAttributeEvalRanker=TRUE
+
+WrapperSubsetEvaluatorGeneticSearch=TRUE
+
+WrapperSubsetEvaluatorRankSearch=TRUE
+
+WrapperSubsetEvaluatorSubsetSizeForwardSelection=TRUE
+
+#These variable manages which classification algorithms are performed. The default setting will use Decision Tree, Naive Bayes, IBK, Random Forest, and Support Vector Machine. If you want an algorithm to be performed, write 'TRUE' next to the '=', otherwise write 'FALSE'
+
+DecisionTree=TRUE
+
+NaiveBayes=TRUE
+
+RandomForest=TRUE
+
+IBK=TRUE
+
+SupportVectorMachine=TRUE

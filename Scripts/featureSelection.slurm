@@ -1,0 +1,16 @@
+#!/bin/bash
+
+        #Helikar Lab, University of Nebraska, Lincoln  copyright 2016
+        #Developed by Greyson Biegert and Akram Mohammed
+        #GPL-3.0
+
+#SBATCH --time=23:00:00         # Run time in hh:mm:ss
+#SBATCH --mem=60000             # Minimum memory required per CPU (in megabytes)
+#SBATCH --job-name=featureSelection
+#SBATCH --error=/home/general/data/CancerDiscover/Outputs/job.%J.err
+#SBATCH --output=/home/general/data/CancerDiscover/Outputs/job.%J.out
+
+#this script calls in the script which performs feature selection.
+cd /home/general/data/CancerDiscover/Scripts
+
+ perl featureSelectionSLURM.pl Configuration.txt
