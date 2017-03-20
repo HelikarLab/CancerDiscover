@@ -61,8 +61,7 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 In your web browser follow the link below. This web page is an archive of `cdf` files. In order for the pipeline to normalize the data correctly, you must find the file corresponding to your experimental plate. 
 
 Follow the link and install it similar to how you installed the `Affy` `R` package:
-
-(https://bioconductor.org/packages/3.3/data/annotation/).
+https://bioconductor.org/packages/3.3/data/annotation/
 
 For example, the following commands (entered in `R`, one at a time) would be used to install the plate *HG_U133_Plus2* `cdf` file.
 ```
@@ -140,7 +139,7 @@ CL2001031611AA.CEL,adenocarcioma
      `cp * ../DataFiles`;
      This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
      
-4. Initialization: 
+4. **Initialization** 
 
    Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please go inside  the `Scripts` directory to      execute the next steps of the pipeline. 
 
@@ -161,7 +160,7 @@ CL2001031611AA.CEL,adenocarcioma
       - **Random Forest**,
       - **Support Vector Machine**.
       
-    If you wish to use other classification algorithms than the ones provided, refer to the0 `WEKA` resources at (weka.wikispaces.com/Primer). 
+    If you wish to use other classification algorithms than the ones provided, refer to the0 `WEKA` resources at weka.wikispaces.com/Primer. 
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
   
    ```
@@ -169,42 +168,43 @@ CL2001031611AA.CEL,adenocarcioma
    bash initialization.bash
    ```
 
-5. Normalization:
+5. **Normalization**
 
-    The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to (https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3)
+    The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
     
-   ```
-   bash masterScript_1.bash
-  ```
-   For `SLURM` users:
-  ```
-  sbatch masterScript_1.slurm
-  ```
+ `bash masterScript_1.bash`
 
-6. Feature Selection:
+ For `SLURM` users:
 
-After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+ `sbatch masterScript_1.slurm`
 
-The default setting for data partitioning is 50/50, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as 80/20 for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
+6. **Feature Selection**
 
-The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+   After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
-`bash masterScript_2.bash`	
-For `SLURM` users:   
-`sbatch masterScript_2.slurm`
+   The default setting for data partitioning is 50/50, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as 80/20 for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
+
+   The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+
+ `bash masterScript_2.bash`
+ 
+    For `SLURM` users:   
   
-Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
+ `sbatch masterScript_2.slurm`
+  
+   Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
 	
-The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, **training** and **testing** feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
+   The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, **training** and **testing** feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
 
-```
+  ```
 bash masterScript_3.bash
 ```
 
-For `SLURM` users:
-```
+ For `SLURM` users:
+ ```
 sbatch masterScript_3.slurm
-```
+  ```
+
 ## Feedback
 
   Greyson Biegert	greyson@huskers.unl.edu
