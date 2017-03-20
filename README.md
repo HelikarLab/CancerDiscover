@@ -3,7 +3,7 @@
 Welcome to **CancerDiscover**!
 
 ## Purpose
-The purpose of this pipeline tool is to convert raw `CEL` file data into `Attribute Relation File Format` for cancer sample classification and biomarker discovery.
+The purpose of this pipeline tool is to convert raw `CEL` file data into `Attribute Relation File Format` (`arff`) for cancer sample classification and biomarker discovery.
 
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
@@ -96,7 +96,7 @@ You will need a computer with at least 230 MB of memory to store the **CancerDis
 ## System Requirements
 
 You will need current or very recent generations of your operating system: 
-Linux, Unix, or MacOS.
+**Linux**, **Unix**, or **MacOS**.
 
 
 ## Downloading **CancerDiscover**
@@ -107,24 +107,24 @@ From your web browser, go to the GitHub website [link](https://github.com/Helika
 
 After installation of **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
 
- - `DataFiles` directory contains raw CEL files and sampleList.txt file
- - `Outputs` repository contains  “resultsSummary.txt” file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy. 
-- `Scripts` directory contains all of the source code 
-- `Models` repository contains all of the classification models
-- `Temp` directory contains intermediate files that are generated as part of the execution of the pipeline
-- `Feature Selection` directory contains the feature selection algorithm output files and two nested directories for arff file generation, namely `Chunks` and `ArffPreprocessing`
-- `Chunks` contains different threshold feature sets
-- `ArffPreprocessing` directory contains the feature vectors in arff format . Feature vectors made here are split into training and testing datasets in their respective directories.
-- `Train` is the repository of the training data for the modeling
-- `Test` is the repository of the testing data for model testing
-- `SampleData` is a directory which contains 10 sample CEL files and their associated sampleList.txt file
-- `Logs` is a directory which contains the elapsed time in seconds for each leg of the pipeline from initialization through model testing.
-- `CompletedExperiments` When the pipeline has finished running, the above directories which contain experimental data will be moved into this directory. This a directory will act as a repository of old experiment files organized by a time-stamp which reads Year, month, day, hours, minutes, seconds; in that order
+ - `DataFiles` directory contains raw CEL files and sampleList.txt file;
+ - `Outputs` repository contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
+- `Scripts` directory contains all of the source code; 
+- `Models` repository contains all of the classification models;
+- `Temp` directory contains intermediate files that are generated as part of the execution of the pipeline;
+- `Feature Selection` directory contains the feature selection algorithm output files and two nested directories for `arff` file; generation, namely `Chunks` and `ArffPreprocessing`;
+- `Chunks` contains different threshold feature sets;
+- `ArffPreprocessing` directory contains the feature vectors in arff format . Feature vectors made here are split into training and testing datasets in their respective directories;
+- `Train` is the repository of the training data for the modeling;
+- `Test` is the repository of the testing data for model testing;
+- `SampleData` is a directory which contains 10 sample `CEL` files and their associated `sampleList.txt` file;
+- `Logs` is a directory which contains the elapsed time in seconds for each leg of the pipeline from initialization through model testing;
+- `CompletedExperiments` When the pipeline has finished running, the above directories which contain experimental data will be moved into this directory. This directory will act as a repository of old experiment files organized by a time-stamp which reads as `Year-month-day-hours-minutes-seconds`.
 
 ## Execution of Pipeline
 1. In the command line, your first step will be to place your raw `CEL` file data into the `DataFiles` directory.
 
-2. Next, in the DataFiles directory you will need to make a two column csv (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
+2. Next, in the DataFiles directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
 ```
 CL2001031606AA.CEL,squamousCellCarcinoma
 CL2001031607AA.CEL,squamousCellCarcinoma
@@ -134,7 +134,8 @@ CL2001031611AA.CEL,adenocarcioma
 ```
 
 3. If you are using the sample data:
-   * enter the `SampleData` directory;
+   * enter the `SampleData` directory:
+     `cd  .\PathToSampleDataDirectory`
    * enter the command:
      `cp * ../DataFiles`;
      This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
@@ -147,10 +148,11 @@ CL2001031611AA.CEL,adenocarcioma
 
    Now, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization are:
  
-      - **Normalization:** `method="quantiles"`, 
-      - **Background correction:** `method="rma"`,
-      - **Pm value correction:** `method="pmonly"`,
-      - **Summary:** `method="medianpolish"`.  
+      - **Normalization:** `normMethod="quantiles"`, 
+      - **Background correction:** `bgCorrectMethod="rma"`,
+      - **Pm value correction:** `pmCorrectMethod="pmonly"`,
+      - **Summary:** `summaryMethod="medianpolish"`,
+      - **Number of folds for data partitioning:** `foldNumber=2`.
  
    The default setting for data partitioning is **50:50**. The default setting for feature selection algorithms will perform all       possible feature selection algorithm options. You can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`. The default setting for classification algorithms will generate models using the following algorithm options:
    
@@ -160,7 +162,7 @@ CL2001031611AA.CEL,adenocarcioma
       - **Random Forest**,
       - **Support Vector Machine**.
       
-    If you wish to use other classification algorithms than the ones provided, refer to the0 `WEKA` resources at weka.wikispaces.com/Primer. 
+    If you wish to use other classification algorithms than the ones provided, refer to the `WEKA` resources at weka.wikispaces.com/Primer. 
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
   
    ```
@@ -172,11 +174,11 @@ CL2001031611AA.CEL,adenocarcioma
 
     The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
     
- `bash masterScript_1.bash`
+    `bash masterScript_1.bash`
 
- For `SLURM` users:
+     For `SLURM` users:
 
- `sbatch masterScript_1.slurm`
+    `sbatch masterScript_1.slurm`
 
 6. **Feature Selection**
 
@@ -186,24 +188,22 @@ CL2001031611AA.CEL,adenocarcioma
 
    The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
- `bash masterScript_2.bash`
+      `bash masterScript_2.bash`
  
-    For `SLURM` users:   
+      For `SLURM` users:   
   
- `sbatch masterScript_2.slurm`
+      `sbatch masterScript_2.slurm`
   
    Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
 	
    The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, **training** and **testing** feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
 
-  ```
-bash masterScript_3.bash
-```
+      `bash masterScript_3.bash`
 
- For `SLURM` users:
- ```
-sbatch masterScript_3.slurm
-  ```
+      For `SLURM` users:
+ 
+      `sbatch masterScript_3.slurm`
+
 
 ## Feedback
 
