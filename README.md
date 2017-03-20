@@ -1,17 +1,17 @@
 # CancerDiscover
 
-Welcome to CancerDiscover!
+Welcome to **CancerDiscover**!
 
 ## Purpose: 
-The purpose of this pipeline tool is to convert raw CEL file data into Attribute Relation File Format for cancer sample classification and biomarker discovery.
+The purpose of this pipeline tool is to convert raw `CEL` file data into `Attribute Relation File Format` for cancer sample classification and biomarker discovery.
 
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
 
-## Software Requirement: 
+## Software Requirement 
 
-Before installing CancerDiscover, make sure you have the necessary software packages installed. 
+Before installing **CancerDiscover**, make sure you have the necessary software packages installed. 
 
 ### Installing R
 
@@ -19,11 +19,11 @@ From the command line, enter the following commands below:
 
 ```
 sudo apt-get update
-sudo apt-get install r-base`
+sudo apt-get install r-base
 ```
 ### Installing Bioconductor and Affy packages
 
-Once R is installed you’ll need to use two more commands from within R.
+Once `R` is installed you’ll need to use two more commands from within `R`.
 From the command line enter the following command:
 
 `R`
@@ -32,7 +32,7 @@ Once R has finished loading, enter the following command:
 
 `source("http://bioconductor.org/biocLite.R")`
 
-Wait for the command to finish executing then enter the following command to install the `Affy` R package:
+Wait for the command to finish executing then enter the following command to install the `Affy` `R` package:
 
 `biocLite("affy")`
 
@@ -50,7 +50,7 @@ Next, set the `WEKA` classpath by entering the following command in `.bashrc` fi
 
 ```
 export WEKAINSTALL=/absolute/path/to/weka/directory/` 
-(for example: `export WEKAINSTALL=/home/general/weka/weka-3-6-11`)
+##for example: `export WEKAINSTALL=/home/general/weka/weka-3-6-11`
 export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 ```
 
@@ -60,7 +60,7 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 
 In your web browser follow the link below. This web page is an archive of `cdf` files. In order for the pipeline to normalize the data correctly, you must find the file corresponding to your experimental plate. 
 
-Follow the link and install it similar to how you installed the `Affy R` package:
+Follow the link and install it similar to how you installed the `Affy` `R` package:
 
 (https://bioconductor.org/packages/3.3/data/annotation/).
 
@@ -69,9 +69,12 @@ For example, the following commands (entered in `R`, one at a time) would be use
 source("http://bioconductor.org/biocLite.R")
 biocLite("hgu133plus2cdf")
 ```
-It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed. Refer to `Affy` documentation for more details. 
+It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed. In order to refer to `Affy` documentation for more details, run the following command while `R` is working:
+```
+browseVignettes("affy")
+```
 
-### Installing Perl: 
+### Installing Perl
 
 #### For OSX users
 Install `"Command Line Tools for Xcode"`, either directly or through `Xcode`, both available from Apple Developer downloads (free registration required). `Xcode` can also be installed through the App Store application.
@@ -87,19 +90,19 @@ Open a Terminal and execute the command given below:
 ```
 curl -L http://xrl.us/installperlnix | bash
 ```
-## Hardware Requirements: 
+## Hardware Requirements
 
 You will need a computer with at least 230 MB of memory to store the **CancerDiscover** pipeline. 
 
-## System Requirements: 
+## System Requirements
 
 You will need current or very recent generations of your operating system: 
 Linux, Unix, or MacOS.
 
 
-## Downloading **CancerDiscover**:
+## Downloading **CancerDiscover**
 
-From your web browser, go to the GitHub website link (https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
+From your web browser, go to the GitHub website [link](https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
 
 ## Directory Structure of the Pipeline:
 
@@ -160,30 +163,32 @@ CL2001031611AA.CEL,adenocarcioma
       
     If you wish to use other classification algorithms than the ones provided, refer to the0 `WEKA` resources at (weka.wikispaces.com/Primer). 
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
-   ````
-   cd ../Scripts
-   bash initialization.bash 
+  
    ```
+   cd ../Scripts
+   bash initialization.bash
+   ```
+
 5. Normalization:
 
-The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to (https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3)
-```
-bash masterScript_1.bash
-```
-For `SLURM` users:
-```
-sbatch masterScript_1.slurm
-```
+    The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to (https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3)
+   ```
+  bash masterScript_1.bash
+  ```
+   For `SLURM` users:
+  ```
+  sbatch masterScript_1.slurm
+  ```
 
-5. Feature Selection:
+6. Feature Selection:
 
-After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+ After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
-The default setting for data partitioning is 50/50, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as 80/20 for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
+ The default setting for data partitioning is 50/50, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as 80/20 for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
 
-The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+ The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
-```
+  ```
 bash masterScript_2.bash	
 ```
 
