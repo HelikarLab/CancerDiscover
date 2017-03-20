@@ -42,7 +42,7 @@ You will also need a package called AnnotationDbi which can be installed with th
 
 ### Installing WEKA
 
-This project utilizes WEKA 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
+This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
 
 `wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download`
 
@@ -50,7 +50,12 @@ Next, set the `WEKA` classpath by entering the following command in `.bashrc` fi
 
 ```
 export WEKAINSTALL=/absolute/path/to/weka/directory/` 
-##for example: `export WEKAINSTALL=/home/general/weka/weka-3-6-11`
+```
+For example: 
+
+`export WEKAINSTALL=/home/general/weka/weka-3-6-11`
+
+```
 export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 ```
 
@@ -63,7 +68,7 @@ In your web browser follow the link below. This web page is an archive of `cdf` 
 Follow the link and install it similar to how you installed the `Affy` `R` package:
 https://bioconductor.org/packages/3.3/data/annotation/
 
-For example, the following commands (entered in `R`, one at a time) would be used to install the plate *HG_U133_Plus2* `cdf` file.
+For example, the following commands (entered in `R`, one at a time) would be used to install the plate *HG_U133_Plus2* `cdf` file:
 ```
 source("http://bioconductor.org/biocLite.R")
 biocLite("hgu133plus2cdf")
@@ -83,7 +88,9 @@ curl -L http://xrl.us/installperlosx | bash
 ```
 
 #### For Unix/Linux users
-Install a compiler, such as `gcc` through your system package management (e.g. `apt`, `yum`).
+Install a compiler, such as `gcc` through your system package management (e.g. `apt`, `yum`):
+
+`sudo apt-get gcc`
 
 Open a Terminal and execute the command given below:
 ```
@@ -107,14 +114,14 @@ From your web browser, go to the GitHub website [link](https://github.com/Helika
 
 After installation of **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
 
- - `DataFiles` directory contains raw CEL files and sampleList.txt file;
+ - `DataFiles` directory contains raw `CEL` files and `sampleList.txt` file;
  - `Outputs` repository contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
 - `Scripts` directory contains all of the source code; 
 - `Models` repository contains all of the classification models;
 - `Temp` directory contains intermediate files that are generated as part of the execution of the pipeline;
 - `Feature Selection` directory contains the feature selection algorithm output files and two nested directories for `arff` file; generation, namely `Chunks` and `ArffPreprocessing`;
 - `Chunks` contains different threshold feature sets;
-- `ArffPreprocessing` directory contains the feature vectors in arff format . Feature vectors made here are split into training and testing datasets in their respective directories;
+- `ArffPreprocessing` directory contains the feature vectors in `arff` format . Feature vectors made here are split into training and testing datasets in their respective directories;
 - `Train` is the repository of the training data for the modeling;
 - `Test` is the repository of the testing data for model testing;
 - `SampleData` is a directory which contains 10 sample `CEL` files and their associated `sampleList.txt` file;
@@ -124,7 +131,7 @@ After installation of **CancerDiscover**, notice inside the **CancerDiscover** d
 ## Execution of Pipeline
 1. In the command line, your first step will be to place your raw `CEL` file data into the `DataFiles` directory.
 
-2. Next, in the DataFiles directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
+2. Next, in the `DataFiles` directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
 ```
 CL2001031606AA.CEL,squamousCellCarcinoma
 CL2001031607AA.CEL,squamousCellCarcinoma
@@ -135,7 +142,9 @@ CL2001031611AA.CEL,adenocarcioma
 
 3. If you are using the sample data:
    * enter the `SampleData` directory:
-     `cd  .\PathToSampleDataDirectory`
+   
+     `cd  ./Absolute/Path/To/SampleData/Directory`
+     
    * enter the command:
      `cp * ../DataFiles`;
      This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
@@ -162,7 +171,7 @@ CL2001031611AA.CEL,adenocarcioma
       - **Random Forest**,
       - **Support Vector Machine**.
       
-    If you wish to use other classification algorithms than the ones provided, refer to the `WEKA` resources at weka.wikispaces.com/Primer. 
+    If you wish to use other classification algorithms than the ones provided, refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
   
    ```
@@ -184,7 +193,7 @@ CL2001031611AA.CEL,adenocarcioma
 
    After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
-   The default setting for data partitioning is 50/50, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as 80/20 for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
+   The default setting for data partitioning is **50:50**, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as **80:20** for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
 
    The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
