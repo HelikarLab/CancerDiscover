@@ -36,7 +36,7 @@ Wait for the command to finish executing then enter the following command to ins
 
 `biocLite("affy")`
 
-You will also need a package called AnnotationDbi which can be installed with the command below:
+You will also need a package called `AnnotationDbi` which can be installed with the command below:
 
 `biocLite("AnnotationDbi")`
 
@@ -180,15 +180,15 @@ CL2001031611AA.CEL,adenocarcioma
    ```
 
 5. **Normalization**
-
-    The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
     
     `bash masterScript_1.bash`
 
      For `SLURM` users:
 
     `sbatch masterScript_1.slurm`
-
+    
+     The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
+     
 6. **Feature Selection**
 
    After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
@@ -196,6 +196,8 @@ CL2001031611AA.CEL,adenocarcioma
    The default setting for data partitioning is **50:50**, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as **80:20** for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or `20%` of the master feature vector data. 
 
    The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
+   
+   The following commands perform the feature selection from normalized expression matrix:
 
       `bash masterScript_2.bash`
  
@@ -203,15 +205,21 @@ CL2001031611AA.CEL,adenocarcioma
   
       `sbatch masterScript_2.slurm`
   
-   Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
-	
-   The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, **training** and **testing** feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
+7.  Model training and testing
 
+       Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
+   
+       The following commands perform model training and testing on the feature vectors:
+   
       `bash masterScript_3.bash`
 
       For `SLURM` users:
  
       `sbatch masterScript_3.slurm`
+	
+       The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, **training** and **testing** feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
+
+
 
 
 ## Feedback
