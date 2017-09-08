@@ -3,7 +3,7 @@
 Welcome to **CancerDiscover**!
 
 ## Purpose
-The purpose of this pipeline tool is to convert raw `CEL` file data into `Attribute Relation File Format` (`arff`) for cancer sample classification and biomarker discovery.
+The purpose of this free, open-source pipeline tool is to convert raw high-throughput data (for example `CEL` files etc.) into WEKA-native (`Attribute Relation File Format` [`arff`]) for cancer class and subtype classification and biomarker identification.
 
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
@@ -11,7 +11,7 @@ This README file will serve as a guide for using this software tool. We suggest 
 
 ## Software Requirement 
 
-Before installing **CancerDiscover**, make sure you have the necessary software packages installed. 
+Before installing **CancerDiscover**, make sure you have all the necessary software packages installed. 
 
 ### Installing R
 
@@ -21,24 +21,43 @@ From the command line, enter the following commands below:
 sudo apt-get update
 sudo apt-get install r-base
 ```
-### Installing Bioconductor and Affy packages
+### Installing Bioconductor and R packages
 
-Once `R` is installed you’ll need to use two more commands from within `R`.
-From the command line enter the following command:
+**Run R**
+Once `R` is installed you’ll need to run the commands from within `R`.
+From the commandline enter the following command:
 
 `R`
 
+**Install Bioconductor**
 Once R has finished loading, enter the following command:
 
 `source("http://bioconductor.org/biocLite.R")`
 
-Wait for the command to finish executing then enter the following command to install the `Affy` `R` package:
+If there is a updated bioconductor package is available, run the following command:
+
+`biocLite("BiocUpgrade")`
+
+**Install Affy R module**
+Enter the following command to install the `Affy` `R` package:
 
 `biocLite("affy")`
 
+**Annotation Database Interface**
 You will also need a package called `AnnotationDbi` which can be installed with the command below:
 
 `biocLite("AnnotationDbi")`
+
+It provides user interface and database connection code for annotation data packages using SQLite data storage.
+
+
+**CDF (Chip Definition File) File**
+
+Command to download the plate *HG_U133_Plus2* `cdf` file:
+```
+biocLite("hgu133plus2cdf")
+```
+It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
 
 ### Installing WEKA
 
@@ -62,22 +81,6 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
-### Downloading CDF (Chip Definition File) File
-
-In your web browser follow the link below. This web page is an archive of `cdf` files. In order for the pipeline to normalize the data correctly, you must find the file corresponding to your experimental plate. 
-
-Follow the link and install it similar to how you installed the `Affy` `R` package:
-https://bioconductor.org/packages/3.3/data/annotation/
-
-For example, the following commands (entered in `R`, one at a time) would be used to install the plate *HG_U133_Plus2* `cdf` file:
-```
-source("http://bioconductor.org/biocLite.R")
-biocLite("hgu133plus2cdf")
-```
-It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed. In order to refer to `Affy` documentation for more details, run the following command while `R` is working:
-```
-browseVignettes("affy")
-```
 
 ### Installing Perl
 
@@ -233,14 +236,13 @@ CL2001031611AA.CEL,adenocarcioma
 
 
 
-## Feedback
+## Contact
 
+  Akram Mohammed	amohammed3@unl.edu
+  
   Greyson Biegert	greyson@huskers.unl.edu
+  
+  Jiri Adamec		jadamec2@unl.edu
 
-   Akram Mohammed	amohammed3@unl.edu
-
-   Jiri Adamec		jadamec2@unl.edu
-
-   Tomas Helikar		thelikar2@unl.edu
-
+  Tomas Helikar		thelikar2@unl.edu
 
