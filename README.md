@@ -21,7 +21,7 @@
 
 ![](.github/ria.gif)
 
-**CancerDiscover** is an open source pipeline tool (released under the [GNU General Public License v3](LICENSE)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
+**CancerDiscover** is an open source pipeline tool (released under the [GNU General Public License v3](LICENSE.md)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
 
 ***WARNING***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
 
@@ -309,4 +309,4 @@ CL2001031611AA.CEL,adenocarcioma
   Tomas Helikar		thelikar2@unl.edu
 
 ### License
-This software has been released under the [GNU General Public License v3](LICENSE).
+This software has been released under the [GNU General Public License v3](LICENSE.md).
