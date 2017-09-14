@@ -1,3 +1,7 @@
+#Helikar Lab, University of Nebraska, Lincoln  copyright 2016
+#Developed by Greyson Biegert and Akram Mohammed
+#GPL-3.0
+
 #this records the memory usage
 echo CPU: `top -b -n1 |grep "Cpu(s)" |awk '{print $2 + $4}' ` > ../Temp/memoryUsage1_ms3.temp
 FREE_DATA=`free -m | grep Mem`

@@ -1,3 +1,7 @@
+#Helikar Lab, University of Nebraska, Lincoln  copyright 2016
+#Developed by Greyson Biegert and Akram Mohammed
+#GPL-3.0
+
 #this will TRAIN the files for top 1% of features
 perl trainModels_top1pc.pl Configuration.txt
  
