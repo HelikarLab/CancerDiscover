@@ -1,3 +1,7 @@
+#Helikar Lab, University of Nebraska, Lincoln  copyright 2016
+#Developed by Greyson Biegert and Akram Mohammed
+#GPL-3.0
+
 setwd("/home/general/data/cancerML/DataFiles")
 library(affy)
 AffyBatch <-read.affybatch("GSM1544837_BM2806_GMP_91.CEL","GSM1544838_BM2806_HSC_87.CEL","GSM1544839_BM2806_L_MPP_89.CEL","GSM1544840_BM2806_MEP_92.CEL","GSM1544841_BM2806_MPP_88.CEL","GSM768750_7404.cel","GSM768751_7424.cel","GSM768752_7425.cel","GSM768753_7426.cel","GSM768754_7427.cel" ,
