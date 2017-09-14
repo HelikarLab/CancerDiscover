@@ -1,19 +1,62 @@
-# CancerDiscover
+---
+<h1 align="center">
+  CancerDiscover
+</h1>
 
-Welcome to **CancerDiscover**!
+<h4 align="center">
+  A data mining suite for cancer classification
+</h4>
 
-## Purpose
+<p align="center">
+  <a href="http://cancerdiscover.readthedocs.io">
+    <img src="https://readthedocs.org/projects/cancerdiscover/badge/?version=latest"/>
+  </a>
+  <a href="https://saythanks.io/to/akram-mohammed">
+    <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square">
+  </a>
+  <a href="https://paypal.me/akram9">
+    <img src="https://img.shields.io/badge/Donate-%24-blue.svg?style=flat-square">
+  </a>
+</p>
+
+![](.github/ria.gif)
+
+**CancerDiscover** is an open source pipeline tool (released under the [GNU General Public License v3](LICENSE)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
+
+***WARNING***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
+
+### Table of Contents
+* [Purpose](#purpose)
+* [Installation](#installation)
+* [Dowloading CancerDiscover](#dowloading-CancerDiscover)
+* [Dependencies](#dependencies)
+* [System Requirements] (#system-requirements)
+* [Hardware Requirements] (#hardware-requirements)
+* [Directory Structure of the Pipeline] (#directory-structure-of-the-pipeline)
+* [Execution of Pipeline] (#execution-of-pipeline)
+* [Contribution] (#contribution)
+* [License](#license)
+
+### Installation
+To install candis right from scratch, check out our exhaustive guides:
+* [A Hitchhiker's Guide to Installing candis on Mac OS X](https://github.com/akram-mohammed/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
+* [A Hitchhiker's Guide to Installing candis on Linux OS](https://github.com/akram-mohammed/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Linux-OS)
+
+
+### Purpose
 The purpose of this free, open-source pipeline tool is to convert raw high-throughput data (for example `CEL` files etc.) into WEKA-native (`Attribute Relation File Format` [`arff`]) for cancer class and subtype classification and biomarker identification.
-
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
+### Downloading **CancerDiscover**
 
-## Software Requirement 
+From your web browser, go to the GitHub website [link](https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
+
+### Dependencies 
 
 Before installing **CancerDiscover**, make sure you have all the necessary software packages installed. 
 
-### Installing R
+#### Installing R
 
 From the command line, enter the following commands below: 
 
@@ -21,35 +64,34 @@ From the command line, enter the following commands below:
 sudo apt-get update
 sudo apt-get install r-base
 ```
-### Installing Bioconductor and R packages
+#### Installing Bioconductor and R packages
 
 **Run R**
 Once `R` is installed you’ll need to run the commands from within `R`.
 From the commandline enter the following command:
 
-`R`
+```R```
 
 **Install Bioconductor**
 Once R has finished loading, enter the following command:
 
-`source("http://bioconductor.org/biocLite.R")`
+```source("http://bioconductor.org/biocLite.R")```
 
 If there is a updated bioconductor package is available, run the following command:
 
-`biocLite("BiocUpgrade")`
+```biocLite("BiocUpgrade")```
 
 **Install Affy R module**
 Enter the following command to install the `Affy` `R` package:
 
-`biocLite("affy")`
+```biocLite("affy")```
 
 **Annotation Database Interface**
 You will also need a package called `AnnotationDbi` which can be installed with the command below:
 
-`biocLite("AnnotationDbi")`
+```biocLite("AnnotationDbi")```
 
 It provides user interface and database connection code for annotation data packages using SQLite data storage.
-
 
 **CDF (Chip Definition File) File**
 
@@ -59,11 +101,11 @@ biocLite("hgu133plus2cdf")
 ```
 It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
 
-### Installing WEKA
+#### Installing WEKA
 
 This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
 
-`wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download`
+```wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download```
 
 Next, set the `WEKA` classpath by entering the following command in `.bashrc` file under Alias definitions:
 
@@ -81,40 +123,35 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
+#### Installing Perl
 
-### Installing Perl
-
-#### For OSX users
+*##### For OSX users*
 Install `"Command Line Tools for Xcode"`, either directly or through `Xcode`, both available from Apple Developer downloads (free registration required). `Xcode` can also be installed through the App Store application.
 Open the `Terminal.app` (found in Applications -> Utilities) and execute the command given below:
 ```
 curl -L http://xrl.us/installperlosx | bash
 ```
 
-#### For Unix/Linux users
+*##### For Unix/Linux users*
 Install a compiler, such as `gcc` through your system package management (e.g. `apt`, `yum`):
 
-`sudo apt-get gcc`
+```sudo apt-get gcc```
 
 Open a Terminal and execute the command given below:
 ```
 curl -L http://xrl.us/installperlnix | bash
 ```
-## Hardware Requirements
+### Hardware Requirements
 
 You will need a computer with at least 230 MB of memory to store the **CancerDiscover** pipeline. 
 
-## System Requirements
+### System Requirements
 
 You will need current or very recent generations of your operating system: 
 **Linux**, **Unix**, or **MacOS**.
 
 
-## Downloading **CancerDiscover**
-
-From your web browser, go to the GitHub website [link](https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
-
-## Directory Structure of the Pipeline
+### Directory Structure of the Pipeline
 
 After installation of **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
 
@@ -132,7 +169,7 @@ After installation of **CancerDiscover**, notice inside the **CancerDiscover** d
 - `Logs` is a directory which contains the elapsed time in seconds for each leg of the pipeline from initialization through model testing;
 - `CompletedExperiments` When the pipeline has finished running, the above directories which contain experimental data will be moved into this directory. This directory will act as a repository of old experiment files organized by a time-stamp which reads as `Year-month-day-hours-minutes-seconds`.
 
-## Execution of Pipeline
+### Execution of Pipeline
 1. In the command line, your first step will be to place your raw `CEL` file data into the `DataFiles` directory.
 
 2. Next, in the `DataFiles` directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
@@ -147,11 +184,11 @@ CL2001031611AA.CEL,adenocarcioma
 3. If you are using the sample data:
    * enter the `SampleData` directory:
    
-     `cd  ./Absolute/Path/To/SampleData/Directory`
+     ```cd  ./Absolute/Path/To/SampleData/Directory```
      
    * enter the command:
    
-     `cp * ../DataFiles`
+     ```cp * ../DataFiles```
      
      This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
      
@@ -187,11 +224,11 @@ CL2001031611AA.CEL,adenocarcioma
 
 5. **Normalization**
     
-    `bash masterScript_1.bash`
+    ```bash masterScript_1.bash```
 
      For `SLURM` users:
 
-    `sbatch masterScript_1.slurm`
+    ```sbatch masterScript_1.slurm```
     
     
     
@@ -209,11 +246,11 @@ CL2001031611AA.CEL,adenocarcioma
    
    The following commands perform the feature selection from normalized expression matrix:
 
-      `bash masterScript_2.bash`
+      ```bash masterScript_2.bash```
  
       For `SLURM` users:   
   
-      `sbatch masterScript_2.slurm`
+     ```sbatch masterScript_2.slurm```
   
 7.  **Model training and testing**
 
@@ -223,20 +260,17 @@ CL2001031611AA.CEL,adenocarcioma
    
        The following commands perform model training and testing on the feature vectors:
    
-      `bash masterScript_3.bash`
+      ```bash masterScript_3.bash```
 
       For `SLURM` users:
  
-      `sbatch masterScript_3.slurm`
+      ```sbatch masterScript_3.slurm```
       
       
 	
        The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, training and testing feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
 
-
-
-
-## Contact
+### Contribution
 
   Akram Mohammed	amohammed3@unl.edu
   
@@ -246,3 +280,5 @@ CL2001031611AA.CEL,adenocarcioma
 
   Tomas Helikar		thelikar2@unl.edu
 
+### License
+This software has been released under the [GNU General Public License v3](LICENSE).
