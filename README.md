@@ -30,11 +30,11 @@
 * [Installation](#installation)
 * [Dowloading CancerDiscover](#dowloading-CancerDiscover)
 * [Dependencies](#dependencies)
-* [System Requirements] (#system-requirements)
-* [Hardware Requirements] (#hardware-requirements)
-* [Directory Structure of the Pipeline] (#directory-structure-of-the-pipeline)
-* [Execution of Pipeline] (#execution-of-pipeline)
-* [Contribution] (#contribution)
+* [System Requirements](#system-requirements)
+* [Hardware Requirements](#hardware-requirements)
+* [Directory Structure of the Pipeline](#directory-structure-of-the-pipeline)
+* [Execution of Pipeline](#execution-of-pipeline)
+* [Contribution](#contribution)
 * [License](#license)
 
 ### Installation
@@ -187,13 +187,13 @@ After installation of **CancerDiscover**, notice inside the **CancerDiscover** d
 1. In the command line, your first step will be to place your raw `CEL` file data into the `DataFiles` directory.
 
 2. Next, in the `DataFiles` directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
-```
+`
 CL2001031606AA.CEL,squamousCellCarcinoma
 CL2001031607AA.CEL,squamousCellCarcinoma
 CL2001031608AA.CEL,adenocarcinoma
 CL2001031609AA.CEL,squamousCellCarcinoma
 CL2001031611AA.CEL,adenocarcioma
-```
+`
 
 3. If you are using the sample data:
    * enter the `SampleData` directory:
