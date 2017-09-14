@@ -70,26 +70,36 @@ sudo apt-get install r-base
 Once `R` is installed you’ll need to run the commands from within `R`.
 From the commandline enter the following command:
 
-```R```
+```
+R
+```
 
 **Install Bioconductor**
 Once R has finished loading, enter the following command:
 
-```source("http://bioconductor.org/biocLite.R")```
+```
+source("http://bioconductor.org/biocLite.R")
+```
 
 If there is a updated bioconductor package is available, run the following command:
 
-```biocLite("BiocUpgrade")```
+```
+biocLite("BiocUpgrade")
+```
 
 **Install Affy R module**
 Enter the following command to install the `Affy` `R` package:
 
-```biocLite("affy")```
+```
+biocLite("affy")
+```
 
 **Annotation Database Interface**
 You will also need a package called `AnnotationDbi` which can be installed with the command below:
 
-```biocLite("AnnotationDbi")```
+```
+biocLite("AnnotationDbi")
+```
 
 It provides user interface and database connection code for annotation data packages using SQLite data storage.
 
@@ -105,7 +115,9 @@ It is important to note that not all data must have been derived from affymetrix
 
 This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
 
-```wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download```
+```
+wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download
+```
 
 Next, set the `WEKA` classpath by entering the following command in `.bashrc` file under Alias definitions:
 
@@ -135,7 +147,9 @@ curl -L http://xrl.us/installperlosx | bash
 *##### For Unix/Linux users*
 Install a compiler, such as `gcc` through your system package management (e.g. `apt`, `yum`):
 
-```sudo apt-get gcc```
+```
+sudo apt-get gcc
+```
 
 Open a Terminal and execute the command given below:
 ```
@@ -184,11 +198,15 @@ CL2001031611AA.CEL,adenocarcioma
 3. If you are using the sample data:
    * enter the `SampleData` directory:
    
-     ```cd  ./Absolute/Path/To/SampleData/Directory```
+     ```
+     cd  ./Absolute/Path/To/SampleData/Directory
+     ```
      
    * enter the command:
    
-     ```cp * ../DataFiles```
+     ```
+     cp * ../DataFiles
+     ```
      
      This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
      
@@ -224,14 +242,16 @@ CL2001031611AA.CEL,adenocarcioma
 
 5. **Normalization**
     
-    ```bash masterScript_1.bash```
+    ```
+    bash masterScript_1.bash
+    ```
 
      For `SLURM` users:
 
-    ```sbatch masterScript_1.slurm```
-    
-    
-    
+    ```
+    sbatch masterScript_1.slurm
+    ```
+   
      The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
      
 6. **Feature Selection**
@@ -246,11 +266,15 @@ CL2001031611AA.CEL,adenocarcioma
    
    The following commands perform the feature selection from normalized expression matrix:
 
-      ```bash masterScript_2.bash```
+      ```
+      bash masterScript_2.bash
+      ```
  
       For `SLURM` users:   
   
-     ```sbatch masterScript_2.slurm```
+     ```
+     sbatch masterScript_2.slurm
+     ```
   
 7.  **Model training and testing**
 
@@ -260,11 +284,15 @@ CL2001031611AA.CEL,adenocarcioma
    
        The following commands perform model training and testing on the feature vectors:
    
-      ```bash masterScript_3.bash```
+      ```
+      bash masterScript_3.bash
+      ```
 
       For `SLURM` users:
  
-      ```sbatch masterScript_3.slurm```
+      ```
+      sbatch masterScript_3.slurm
+      ```
       
       
 	
