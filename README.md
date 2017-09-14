@@ -133,26 +133,6 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
-#### Installing Perl
-
-*##### For OSX users*
-Install `"Command Line Tools for Xcode"`, either directly or through `Xcode`, both available from Apple Developer downloads (free registration required). `Xcode` can also be installed through the App Store application.
-Open the `Terminal.app` (found in Applications -> Utilities) and execute the command given below:
-```
-curl -L http://xrl.us/installperlosx | bash
-```
-
-*##### For Unix/Linux users*
-Install a compiler, such as `gcc` through your system package management (e.g. `apt`, `yum`):
-
-```
-sudo apt-get gcc
-```
-
-Open a Terminal and execute the command given below:
-```
-curl -L http://xrl.us/installperlnix | bash
-```
 ### Hardware Requirements
 
 You will need a computer with at least 230 MB of memory to store the **CancerDiscover** pipeline. 
