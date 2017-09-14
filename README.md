@@ -48,7 +48,7 @@ The purpose of this free, open-source pipeline tool is to convert raw high-throu
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
-### Downloading **CancerDiscover**
+### Downloading CancerDiscover
 
 From your web browser, go to the GitHub website [link](https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
 
@@ -187,13 +187,13 @@ After installation of **CancerDiscover**, notice inside the **CancerDiscover** d
 1. In the command line, your first step will be to place your raw `CEL` file data into the `DataFiles` directory.
 
 2. Next, in the `DataFiles` directory you will need to make a two column `csv` (comma separated file) called *"sampleList.txt"*. In the first column write the name of each `CEL` file, and in the second column write the class identifier to be associated with that sample. See the example below:
-`
+```
 CL2001031606AA.CEL,squamousCellCarcinoma
 CL2001031607AA.CEL,squamousCellCarcinoma
 CL2001031608AA.CEL,adenocarcinoma
 CL2001031609AA.CEL,squamousCellCarcinoma
 CL2001031611AA.CEL,adenocarcioma
-`
+```
 
 3. If you are using the sample data:
    * enter the `SampleData` directory:
