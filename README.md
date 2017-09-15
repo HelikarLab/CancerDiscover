@@ -25,7 +25,6 @@
 ***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
 
 ### Table of Contents
-* [Purpose](#purpose)
 * [Downloading CancerDiscover](#downloading-cancerdiscover)
 * [Dependencies](#dependencies)
 * [System Requirements](#system-requirements)
@@ -33,9 +32,6 @@
 * [Execution of Pipeline](#execution-of-pipeline)
 * [Contribution](#contribution)
 * [License](#license)
-
-### Purpose
-The purpose of this free, open-source pipeline tool is to convert raw high-throughput data (for example `CEL` files etc.) into WEKA-native (`Attribute Relation File Format` [`arff`]) for cancer class and subtype classification and biomarker identification.
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
@@ -168,22 +164,23 @@ This command will copy all of the data and `sampleList.txt files` in the `Sample
 
    Now, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization and background correction and data partitioning are:
  
-      - *Normalization:* `normMethod="quantiles"`
-      - *Background correction:* `bgCorrectMethod="rma"`
-      - *Pm value correction:* `pmCorrectMethod="pmonly"`
-      - *Summary:* `summaryMethod="medianpolish"`
-      - *Number of folds for data partitioning:* `foldNumber=2`
+      - Normalization: `normMethod="quantiles"`
+      - Background correction: `bgCorrectMethod="rma"`
+      - Pm value correction: `pmCorrectMethod="pmonly"`
+      - Summary: `summaryMethod="medianpolish"`
+      - Number of folds for data partitioning: `foldNumber=2`
  
    The default setting for data partitioning is *50:50*. 
    
    The default setting for feature selection algorithms will choose all possible feature selection algorithm options. You can find the list of feature selection methods and their associated file names in `featureSelectionAlgorithms.lookup` under `Scripts` directory. 
    
    The default setting for classification algorithms will generate models using the following algorithms:
-      - *Decision Tree*
-      - *IBK*
-      - *Naive Bayes*
-      - *Random Forest*
-      - *Support Vector Machine*
+   
+      - Decision Tree  
+      - IBK   
+      - Naive Bayes   
+      - Random Forest   
+      - Support Vector Machine    
       
   If you wish to use classification algorithms other than the ones provided, please refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
   In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
