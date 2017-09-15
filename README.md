@@ -201,23 +201,24 @@ If you want to use the Sample data for classification:
     If you wish to use classification algorithms other than the ones provided, please refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
     
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
-  
-   ```
+
+
+```
    cd ../Scripts
    bash initialization.bash
-   ```
+```
 
 #### 2. Normalization
     
-    ```
+```
     bash masterScript_1.bash
-    ```
+```
 
      For `SLURM` users:
 
-    ```
+```
     sbatch masterScript_1.slurm
-    ```
+```
    
      The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
      
@@ -243,7 +244,7 @@ If you want to use the Sample data for classification:
   
 #### 4.  Model training and testing
 
-       Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
+Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
        
        The following commands perform model training and testing on the feature vectors:
    
