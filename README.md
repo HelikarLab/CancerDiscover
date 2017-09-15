@@ -31,7 +31,6 @@
 * [Dowloading CancerDiscover](#dowloading-CancerDiscover)
 * [Dependencies](#dependencies)
 * [System Requirements](#system-requirements)
-* [Hardware Requirements](#hardware-requirements)
 * [Directory Structure of the Pipeline](#directory-structure-of-the-pipeline)
 * [Execution of Pipeline](#execution-of-pipeline)
 * [Contribution](#contribution)
@@ -48,9 +47,10 @@ The purpose of this free, open-source pipeline tool is to convert raw high-throu
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
 ### Downloading CancerDiscover
-
-From your web browser, go to the GitHub website [link](https://github.com/HelikarLab/CancerDiscover). It is important to note that you may have to install other unix commands such as the command **source** and the larger software package `Perl`. Both are necessary for the pipeline to function. 
-
+Clone the git repository:
+```console
+$ git clone https://github.com/akram-mohammed/CancerDiscover.git && cd CancerDiscover
+```
 ### Dependencies 
 
 Before installing **CancerDiscover**, make sure you have all the necessary software packages installed. 
@@ -102,9 +102,9 @@ biocLite("AnnotationDbi")
 
 It provides user interface and database connection code for annotation data packages using SQLite data storage.
 
-**CDF (Chip Definition File) File**
+**CDF (Chip Definition File)**
 
-Command to download the plate *HG_U133_Plus2* `cdf` file:
+Command to download the plate *HG_U133_Plus2* `cdf`:
 ```
 biocLite("hgu133plus2cdf")
 ```
@@ -133,23 +133,19 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
-### Hardware Requirements
-
-You will need a computer with at least 230 MB of memory to store the **CancerDiscover** pipeline. 
-
 ### System Requirements
 
 You will need current or very recent generations of your operating system: 
-**Linux**, **Unix**, or **MacOS**.
+**Linux OS**, **Mac OS X**.
 
 ### Directory Structure of the Pipeline
 
 After installation of **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
 
- - `DataFiles` directory contains raw `CEL` files and `sampleList.txt` file;
- - `Outputs` repository contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
+ - `DataFiles` will contain raw `CEL` files and `sampleList.txt` file;
+ - `Outputs` directory contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
 - `Scripts` directory contains all of the source code; 
-- `Models` repository contains all of the classification models;
+- `Models` directory contains all of the classification models;
 - `Temp` directory contains intermediate files that are generated as part of the execution of the pipeline;
 - `Feature Selection` directory contains the feature selection algorithm output files and two nested directories for `arff` file; generation, namely `Chunks` and `ArffPreprocessing`;
 - `Chunks` contains different threshold feature sets;
@@ -195,19 +191,19 @@ CL2001031611AA.CEL,adenocarcioma
 
    Now, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization are:
  
-      - **Normalization:** `normMethod="quantiles"`, 
-      - **Background correction:** `bgCorrectMethod="rma"`,
-      - **Pm value correction:** `pmCorrectMethod="pmonly"`,
-      - **Summary:** `summaryMethod="medianpolish"`,
-      - **Number of folds for data partitioning:** `foldNumber=2`.
+      - *Normalization:* `normMethod="quantiles"`
+      - *Background correction:* `bgCorrectMethod="rma"`
+      - *Pm value correction:* `pmCorrectMethod="pmonly"`
+      - *Summary:* `summaryMethod="medianpolish"`
+      - *Number of folds for data partitioning:* `foldNumber=2`
  
-   The default setting for data partitioning is **50:50**. The default setting for feature selection algorithms will perform all       possible feature selection algorithm options. You can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`. The default setting for classification algorithms will generate models using the following algorithm options:
+   The default setting for data partitioning is *50:50*. The default setting for feature selection algorithms will perform all       possible feature selection algorithm options. You can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`. The default setting for classification algorithms will generate models using the following algorithm options:
    
-      - **Decision Tree**, 
-      - **IBK**, 
-      - **Naive Bayes**, 
-      - **Random Forest**,
-      - **Support Vector Machine**.
+      - *Decision Tree*
+      - *IBK*
+      - *Naive Bayes*
+      - *Random Forest*
+      - *Support Vector Machine*
       
     If you wish to use other classification algorithms than the ones provided, refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
     In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
@@ -235,7 +231,7 @@ CL2001031611AA.CEL,adenocarcioma
 
    After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; **training** and **testing**. The program will then perform feature selection using only the **training** portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
-   The default setting for data partitioning is **50:50**, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as **80:20** for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or **20%** of the master feature vector data. 
+   The default setting for data partitioning is *50:50*, meaning the master feature vector file will be split evenly into **training** and **testing** data sets while retaining approximately even distributions of your sample classes between the two daughter files. To achieve a larger split, such as *80:20* for training/testing, in the configuration file `Configuration.txt` replace the `2` with a `5`. This will tell the program to perform 5 folds, where the **training** file will retain `4` and the **testing** file will retain a single fold or *20%* of the master feature vector data. 
 
    The default setting for feature selection will perform all possible forms of feature selection available unless otherwise specified in the `configuration.txt` file. If you wish to change these feature selection options, in the `Scripts` directory you will need to edit the file named `configuration.txt`. Simply write `TRUE` next to all of the feature selection methods you wish to perform and `FALSE` if you do not want that method performed. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
   
@@ -268,6 +264,14 @@ CL2001031611AA.CEL,adenocarcioma
       ```
       
        The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, training and testing feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
+      
+      Overall, the users will require to run only 4 scripts.
+      ```
+      bash initialization.bash 	# Initialization
+      bash masterScript_1.bash 	# Normalization
+      bash masterScript_2.bash	# Feature Selection
+      bash masterScript_3.bash	# Model Training and Testing
+      ```
 
 ### Contribution
 
