@@ -242,7 +242,7 @@ sbatch masterScript_3.slurm
       
    The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, training and testing feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
       
-      Overall, the users will require to run only 4 scripts.
+ Overall, the users will require to run only 4 scripts.
  ```
  bash initialization.bash 	# Initialization
  bash masterScript_1.bash 	# Normalization
