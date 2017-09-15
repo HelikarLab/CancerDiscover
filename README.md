@@ -26,7 +26,7 @@
 
 ### Table of Contents
 * [Purpose](#purpose)
-* [Dowloading CancerDiscover](#dowloading-CancerDiscover)
+* [Downloading CancerDiscover](#downloading-cancerdiscover)
 * [Dependencies](#dependencies)
 * [System Requirements](#system-requirements)
 * [Directory Structure of the Pipeline](#directory-structure-of-the-pipeline)
@@ -44,51 +44,47 @@ Clone the git repository:
 ```console
 $ git clone https://github.com/akram-mohammed/CancerDiscover.git && cd CancerDiscover
 ```
+
 ### Dependencies 
-
-Before installing **CancerDiscover**, make sure you have all the necessary software packages installed. 
-
+Before downloading **CancerDiscover**, make sure you have all the necessary software packages installed. 
 #### Installing R
-
 From the command line, enter the following commands below: 
-
 ```
 sudo apt-get update
 sudo apt-get install r-base
 ```
-#### Installing Bioconductor and R packages
 
+#### Installing Bioconductor and R packages
 **Run R**
+
 Once `R` is installed you’ll need to run the commands from within `R`.
 From the commandline enter the following command:
-
 ```
 R
 ```
 
 **Install Bioconductor**
-Once R has finished loading, enter the following command:
 
+Once R has finished loading, enter the following command:
 ```
 source("http://bioconductor.org/biocLite.R")
 ```
 
 If there is a updated bioconductor package is available, run the following command:
-
 ```
 biocLite("BiocUpgrade")
 ```
 
 **Install Affy R module**
-Enter the following command to install the `Affy` `R` package:
 
+Enter the following command to install the `Affy` `R` package:
 ```
 biocLite("affy")
 ```
 
 **Annotation Database Interface**
-You will also need a package called `AnnotationDbi` which can be installed with the command below:
 
+You will also need a package called `AnnotationDbi` which can be installed with the command below:
 ```
 biocLite("AnnotationDbi")
 ```
@@ -101,29 +97,25 @@ Command to download the plate *HG_U133_Plus2* `cdf`:
 ```
 biocLite("hgu133plus2cdf")
 ```
+
 It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
 
 #### Installing WEKA
-
 This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
 
 ```
 wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download
 ```
-
 Next, set the `WEKA` classpath by entering the following command in `.bashrc` file under Alias definitions:
-
 ```
 export WEKAINSTALL=/absolute/path/to/weka/directory/`
 export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 ```
 For example: 
-
 ```
 export WEKAINSTALL=/home/general/weka/weka-3-6-11`
 export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 ```
-
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
 To install CancerDiscover dependencies right from scratch, check out our exhaustive guides:
@@ -131,13 +123,11 @@ To install CancerDiscover dependencies right from scratch, check out our exhaust
 * [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/akram-mohammed/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
 
 ### System Requirements
-
 You will need current or very recent generations of your operating system: 
 **Linux OS**, **Mac OS X**.
 
 ### Directory Structure of the Pipeline
-
-After installation of **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
+After downloading **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
 
  - `DataFiles` will contain raw `CEL` files and `sampleList.txt` file;
  - `Outputs` directory contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
@@ -154,7 +144,6 @@ After installation of **CancerDiscover**, notice inside the **CancerDiscover** d
 - `CompletedExperiments` When the pipeline has finished running, the above directories which contain experimental data will be moved into this directory. This directory will act as a repository of old experiment files organized by a time-stamp which reads as `Year-month-day-hours-minutes-seconds`.
 
 ### Execution of Pipeline
-
 The first step is be to place your raw `CEL` file data into the `DataFiles` directory.
 
 In the `DataFiles` directory you will need to create a two column `csv` (comma separated file) called *"sampleList.txt"* where the first column will have the name of each `CEL` file, and the second column will have the class identifier to be associated with that sample. See an example below:
@@ -166,18 +155,16 @@ CL2001031609AA.CEL,squamousCellCarcinoma
 CL2001031611AA.CEL,adenocarcioma
 ```
 If you want to use the Sample data for classification:
-     
      ```
      cp SampleData/* ../DataFiles
      ```
-     
-    This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
+This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
      
 #### 1. Initialization
 
-   Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please go inside  the `Scripts` directory to      execute the next steps of the pipeline.
+  Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please go inside  the `Scripts` directory to      execute the next steps of the pipeline.
 
-   There are two versions of the pipeline, `BASH` and `SLURM` (Simple Linux Utility for Resource Management). `SLURM` is a computational    architecture used to organize user requests into a queue to utilize super-computer resources. `SLURM` requires no kernel         modifications for its operation and is relatively self-contained. Depending on your access to a `SLURM` scheduler, you will use one or    another set of scripts. If you do have access to a `SLURM` scheduler you will execute the scripts ending in `.slurm`. Otherwise, you will use the scripts ending in `.bash` . Due to the complexity of data manipulation, and/or the sheer size of your data, it is recommended to use a high-performance computer. 
+  There are two versions of the pipeline, `BASH` and `SLURM` (Simple Linux Utility for Resource Management). `SLURM` is a computational    architecture used to organize user requests into a queue to utilize super-computer resources. `SLURM` requires no kernel         modifications for its operation and is relatively self-contained. Depending on your access to a `SLURM` scheduler, you will use one or    another set of scripts. If you do have access to a `SLURM` scheduler you will execute the scripts ending in `.slurm`. Otherwise, you will use the scripts ending in `.bash` . Due to the complexity of data manipulation, and/or the sheer size of your data, it is recommended to use a high-performance computer. 
 
    Now, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization and background correction and data partitioning are:
  
@@ -198,10 +185,8 @@ If you want to use the Sample data for classification:
       - *Random Forest*
       - *Support Vector Machine*
       
-    If you wish to use classification algorithms other than the ones provided, please refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
-    
-    In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
-
+  If you wish to use classification algorithms other than the ones provided, please refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
+  In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
 
 ```
    cd ../Scripts
@@ -211,16 +196,15 @@ If you want to use the Sample data for classification:
 #### 2. Normalization
     
 ```
-    bash masterScript_1.bash
+bash masterScript_1.bash
 ```
 
-     For `SLURM` users:
-
+For `SLURM` users:
 ```
-    sbatch masterScript_1.slurm
+sbatch masterScript_1.slurm
 ```
    
-     The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
+  The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
      
 #### 3. Feature Selection
 
@@ -232,41 +216,39 @@ If you want to use the Sample data for classification:
   
    The following commands perform the feature selection from normalized expression matrix:
 
-      ```
-      bash masterScript_2.bash
-      ```
+ ```
+bash masterScript_2.bash
+```
  
-      For `SLURM` users:   
-  
-     ```
-     sbatch masterScript_2.slurm
-     ```
+For `SLURM` users:   
+```
+sbatch masterScript_2.slurm
+```
   
 #### 4.  Model training and testing
 
 Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
        
-       The following commands perform model training and testing on the feature vectors:
+   The following commands perform model training and testing on the feature vectors:
    
-      ```
-      bash masterScript_3.bash
-      ```
+```
+bash masterScript_3.bash
+```
 
-      For `SLURM` users:
- 
-      ```
-      sbatch masterScript_3.slurm
-      ```
+For `SLURM` users:
+```
+sbatch masterScript_3.slurm
+```
       
-       The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, training and testing feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
+   The last lines of the `masterScript_3` scripts will move the content of the `DataFiles` to `CompletedExperiments`, so the new  experiment will run in `DataFiles` directory. You can find all raw data, feature selection outputs, training and testing feature vectors, models, and model results in the `CompletedExperiments` directory followed by a time-stamp. To run experiments with new data, begin with [step 1](#execution-of-pipeline).
       
       Overall, the users will require to run only 4 scripts.
-      ```
-      bash initialization.bash 	# Initialization
-      bash masterScript_1.bash 	# Normalization
-      bash masterScript_2.bash	# Feature Selection
-      bash masterScript_3.bash	# Model Training and Testing
-      ```
+ ```
+ bash initialization.bash 	# Initialization
+ bash masterScript_1.bash 	# Normalization
+ bash masterScript_2.bash	# Feature Selection
+ bash masterScript_3.bash	# Model Training and Testing
+ ```
 
 ### Contribution
 
