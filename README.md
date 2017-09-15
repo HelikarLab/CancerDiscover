@@ -18,11 +18,9 @@
   </a>
 </p>
 
-![](.github/ria.gif)
-
 **CancerDiscover** is an open source pipeline tool (released under the [GNU General Public License v3](LICENSE.md)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
 
-***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
+***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/HelikarLab/CancerDiscover/issues).
 
 ### Table of Contents
 * [Downloading CancerDiscover](#downloading-cancerdiscover)
@@ -38,7 +36,7 @@ This README file will serve as a guide for using this software tool. We suggest 
 ### Downloading CancerDiscover
 Clone the git repository:
 ```console
-$ git clone https://github.com/akram-mohammed/CancerDiscover.git && cd CancerDiscover
+$ git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
 ```
 
 ### Dependencies 
@@ -115,8 +113,8 @@ export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 **Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
 
 To install CancerDiscover dependencies right from scratch, check out our exhaustive guides:
-* [A Hitchhiker's Guide to Installing CancerDiscover on Linux OS](https://github.com/akram-mohammed/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Linux-OS)
-* [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/akram-mohammed/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
+* [A Hitchhiker's Guide to Installing CancerDiscover on Linux OS](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Linux-OS)
+* [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
 
 ### System Requirements
 You will need current or very recent generations of your operating system: 
