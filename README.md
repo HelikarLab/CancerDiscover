@@ -22,7 +22,7 @@
 
 **CancerDiscover** is an open source pipeline tool (released under the [GNU General Public License v3](LICENSE.md)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
 
-***WARNING***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
+***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/CancerDiscover/issues).
 
 ### Table of Contents
 * [Purpose](#purpose)
@@ -173,7 +173,7 @@ If you want to use the Sample data for classification:
      
     This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
      
-1. **Initialization** 
+#### 1. Initialization
 
    Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please go inside  the `Scripts` directory to      execute the next steps of the pipeline.
 
@@ -207,7 +207,7 @@ If you want to use the Sample data for classification:
    bash initialization.bash
    ```
 
-2. **Normalization**
+#### 2. Normalization
     
     ```
     bash masterScript_1.bash
@@ -221,7 +221,7 @@ If you want to use the Sample data for classification:
    
      The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf3
      
-3. **Feature Selection**
+#### 3. Feature Selection
 
    After normalization is complete, you will have a single file called `ExpressionSet.txt` in your `DataFiles` directory. The next step is to build a master feature vector file using the `ExpressionSet.txt` file. The next command you use will build this master feature vector file for you using the `ExpressionSet.txt` file, as well as perform data partitioning, or divide the master feature vector file into two parts; *training* and *testing*. The program will then perform feature selection using only the *training* portion of the master feature vector. Additionally, you can find the list of feature selection methods and their associated file names in the `Scripts` directory in the file named `featureSelectionAlgorithms.lookup`.
 
@@ -241,7 +241,7 @@ If you want to use the Sample data for classification:
      sbatch masterScript_2.slurm
      ```
   
-4.  **Model training and testing**
+#### 4.  Model training and testing
 
        Once feature selection has been completed, new feature vectors are made based on the ranked lists of features.  The new feature vectors will be generated based on your threshold selections, and immediately  used to build and test classification models using a classification algorithm of your choosing. Lastly, the directories will be reset, and your old directories and files will be placed in the `CompletedExperiments` followed by a time-stamp. 
        
