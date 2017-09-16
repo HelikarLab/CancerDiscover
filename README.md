@@ -1,3 +1,9 @@
+<div align="center">
+  <img src=".github/logo-w-title.png" width="512">
+</div>
+
+---
+
 <h1 align="center">
   CancerDiscover
 </h1>
