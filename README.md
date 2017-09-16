@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="logo.png" width="512">
+</div>
+
+---
+
 <h1 align="center">
   CancerDiscover
 </h1>
