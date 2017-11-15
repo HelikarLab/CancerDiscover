@@ -4,7 +4,7 @@
 #Downloading CancerDiscover
 #Clone the git repository:
 git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
-#Execute installation.sh outside of the CancerDiscover directory,
+#Execute installation.sh outside of the CancerDiscover directory
 #cd ../
 #Dependencies
 #Installing R, wget, gcc and perl
