@@ -4,10 +4,6 @@
 #Downloading CancerDiscover
 #Clone the git repository:
 git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
-#Execute installation.sh outside of the CancerDiscover directory
-#cd ../
-#Dependencies
-#Installing R, wget, gcc and perl
 sudo apt-get update
 sudo apt-get install -y r-base wget gcc
 sudo curl -L http://xrl.us/installperlnix | bash
