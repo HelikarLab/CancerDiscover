@@ -19,4 +19,4 @@
 
 #Installing Bioconductor, Affy, AnnotationDbi, and hgu133plus2cdf
 
-curl -sL https://raw.githubusercontent.com/HelikarLab/CancerDiscover/master/Bioconductor_installation.R | Rscript
+curl -sL https://raw.githubusercontent.com/HelikarLab/CancerDiscover/master/Bioconductor_installation.R | R
