@@ -29,9 +29,8 @@
 ***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/HelikarLab/CancerDiscover/issues).
 
 ### Table of Contents
-* [Downloading CancerDiscover](#downloading-cancerdiscover)
-* [Dependencies](#dependencies)
 * [System Requirements](#system-requirements)
+* [Downloading CancerDiscover and Dependencies](#downloading-cancerdiscover-and-dependencies)
 * [Directory Structure of the Pipeline](#directory-structure-of-the-pipeline)
 * [Execution of Pipeline](#execution-of-pipeline)
 * [Contribution](#contribution)
@@ -39,92 +38,18 @@
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
-### Downloading CancerDiscover
-Clone the git repository:
-```console
-$ git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
-```
-
-### Dependencies 
-Before downloading **CancerDiscover**, make sure you have all the necessary software packages installed. 
-#### Installing R
-From the command line, enter the following commands below: 
-```
-sudo apt-get update
-sudo apt-get install r-base
-```
-
-#### Installing Bioconductor and R packages
-**Run R**
-
-Once `R` is installed you’ll need to run the commands from within `R`.
-From the commandline enter the following command:
-```
-R
-```
-
-**Install Bioconductor**
-
-Once R has finished loading, enter the following command:
-```
-source("http://bioconductor.org/biocLite.R")
-```
-
-If there is a updated bioconductor package is available, run the following command:
-```
-biocLite("BiocUpgrade")
-```
-
-**Install Affy R module**
-
-Enter the following command to install the `Affy` `R` package:
-```
-biocLite("affy")
-```
-
-**Annotation Database Interface**
-
-You will also need a package called `AnnotationDbi` which can be installed with the command below:
-```
-biocLite("AnnotationDbi")
-```
-
-It provides user interface and database connection code for annotation data packages using SQLite data storage.
-
-**CDF (Chip Definition File)**
-
-Command to download the plate *HG_U133_Plus2* `cdf`:
-```
-biocLite("hgu133plus2cdf")
-```
-
-It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
-
-#### Installing WEKA
-This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
-
-```
-wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download
-```
-Next, set the `WEKA` classpath by entering the following command in `.bashrc` file under Alias definitions:
-```
-export WEKAINSTALL=/absolute/path/to/weka/directory/`
-export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
-```
-For example: 
-```
-export WEKAINSTALL=/home/general/weka/weka-3-6-11`
-export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
-```
-**Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
-
-To install CancerDiscover dependencies right from scratch, check out our exhaustive guides:
-* [A Hitchhiker's Guide to Installing CancerDiscover on Linux OS](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Linux-OS)
-* [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
-
 ### System Requirements
 You will need current or very recent generations of your operating system: 
 **Linux OS**, **Mac OS X**.
+
+### Downloading CancerDiscover and Dependencies
+```console
+curl -sL bit.do/installation_linux | sh
+curl -sL bit.do/installation_mac | sh
+```
+To install CancerDiscover dependencies right from scratch, check out our exhaustive guides:
+* [A Hitchhiker's Guide to Installing CancerDiscover on Linux OS](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Linux-OS)
+* [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
 
 ### Directory Structure of the Pipeline
 After downloading **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
