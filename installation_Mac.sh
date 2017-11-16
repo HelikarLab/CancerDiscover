@@ -10,9 +10,16 @@ git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
 
 #Dependencies
 #Installing R, wget, gcc and perl
-sudo apt-get update
-sudo apt-get install -y r-base wget gcc
-sudo curl -L http://xrl.us/installperlnix | bash
+
+#Install brew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew tap homebrew/science
+brew install Caskroom/cask/xquartz
+brew install r
+
+curl -L http://xrl.us/installperlosx | bash
+
 
 #Installing WEKA
 #This project utilizes WEKA 3-6-11. execute the following command:
