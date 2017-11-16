@@ -3,7 +3,7 @@
 #Before downloading CancerDiscover, make sure you have all the necessary software packages installed.
 #Downloading CancerDiscover
 #Clone the git repository:
-git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
+git clone https://github.com/HelikarLab/CancerDiscover.git
 
 #Execute installation.sh outside of the CancerDiscover directory, 
 #cd ../
