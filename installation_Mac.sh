@@ -9,7 +9,7 @@ git clone https://github.com/HelikarLab/CancerDiscover.git && cd CancerDiscover
 #cd ../
 
 #Dependencies
-#Installing R, wget, gcc and perl
+#Installing R, wget and perl
 
 #Install brew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -20,6 +20,7 @@ brew install r
 
 curl -L http://xrl.us/installperlosx | bash
 
+brew install wget --with-libressl
 
 #Installing WEKA
 #This project utilizes WEKA 3-6-11. execute the following command:
@@ -32,4 +33,3 @@ wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip
 #Installing Bioconductor, Affy, AnnotationDbi, and hgu133plus2cdf
 wget -q https://raw.githubusercontent.com/HelikarLab/CancerDiscover/master/Bioconductor_installation.R
 Rscript Bioconductor_installation.R
-
