@@ -71,14 +71,7 @@ After downloading **CancerDiscover**, notice inside the **CancerDiscover** direc
 ### Execution of Pipeline
 The first step is be to place your raw `CEL` file data into the `DataFiles` directory.
 
-In the `DataFiles` directory you will need to create a two column `csv` (comma separated file) called *"sampleList.txt"* where the first column will have the name of each `CEL` file, and the second column will have the class identifier to be associated with that sample. See an example below:
-```
-CL2001031606AA.CEL,squamousCellCarcinoma
-CL2001031607AA.CEL,squamousCellCarcinoma
-CL2001031608AA.CEL,adenocarcinoma
-CL2001031609AA.CEL,squamousCellCarcinoma
-CL2001031611AA.CEL,adenocarcioma
-```
+In the `DataFiles` directory you will need to create a two column `csv` (comma separated file) called *"sampleList.txt"* where the first column will have the name of each `CEL` file, and the second column will have the class identifier to be associated with that sample.
 If you want to use the Sample data for classification:
      ```
      cp SampleData/* ../DataFiles
