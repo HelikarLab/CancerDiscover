@@ -52,21 +52,7 @@ To install CancerDiscover dependencies right from scratch, check out our exhaust
 * [A Hitchhiker's Guide to Installing CancerDiscover on Mac OS X](https://github.com/HelikarLab/CancerDiscover/wiki/A-Hitchhiker's-Guide-to-Installing-CancerDiscover-on-Mac-OS-X)
 
 ### Directory Structure of the Pipeline
-After downloading **CancerDiscover**, notice inside the **CancerDiscover** directory there are several empty directories and one which contains all of the scripts necessary to process data:
-
- - `DataFiles` will contain raw `CEL` files and `sampleList.txt` file;
- - `Outputs` directory contains  `resultsSummary.txt` file which will have the summary of  the model accuracies as well as information   regarding the context which gave the highest accuracy; 
-- `Scripts` directory contains all of the source code; 
-- `Models` directory contains all of the classification models;
-- `Temp` directory contains intermediate files that are generated as part of the execution of the pipeline;
-- `Feature Selection` directory contains the feature selection algorithm output files and two nested directories for `arff` file; generation, namely `Chunks` and `ArffPreprocessing`;
-- `Chunks` contains different threshold feature sets;
-- `ArffPreprocessing` directory contains the feature vectors in `arff` format . Feature vectors made here are split into training and testing datasets in their respective directories;
-- `Train` is the repository of the training data for the modeling;
-- `Test` is the repository of the testing data for model testing;
-- `SampleData` is a directory which contains 10 sample `CEL` files and their associated `sampleList.txt` file;
-- `Logs` is a directory which contains the elapsed time in seconds for each leg of the pipeline from initialization through model testing;
-- `CompletedExperiments` When the pipeline has finished running, the above directories which contain experimental data will be moved into this directory. This directory will act as a repository of old experiment files organized by a time-stamp which reads as `Year-month-day-hours-minutes-seconds`.
+* [Directory Structure](https://github.com/HelikarLab/CancerDiscover/wiki/Directory-Structure-of-the-Pipeline)
 
 ### Execution of Pipeline
 The first step is be to place your raw `CEL` file data into the `DataFiles` directory.
