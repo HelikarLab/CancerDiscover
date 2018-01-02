@@ -36,11 +36,11 @@
 * [Contribution](#contribution)
 * [License](#license)
 
-This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
+This README file will serve as a guide for using this software tool. We suggest reading through the document, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
 ### System Requirements
 You will need current or very recent generations of your operating system: 
-**Linux OS**, **Mac OS X**.
+**Linux OS**, **Mac OSX**.
 
 ### Downloading CancerDiscover and Dependencies
 ```console
