@@ -55,22 +55,23 @@ To install CancerDiscover dependencies right from scratch, check out our exhaust
 * [Directory Structure](https://github.com/HelikarLab/CancerDiscover/wiki/Directory-Structure-of-the-Pipeline)
 
 ### Execution of Pipeline
-The first step is be to place your raw `CEL` file data into the `DataFiles` directory.
+The first step of the pipeline is to place your raw `CEL` file data into the `DataFiles` directory.
 
-In the `DataFiles` directory you will need to create a two column `csv` (comma separated file) called *"sampleList.txt"* where the first column will have the name of each `CEL` file, and the second column will have the class identifier to be associated with that sample.
+In the `DataFiles` directory you will need to create a two-column `csv` (comma separated file) called *"sampleList.txt"* where the first column will have the name of each `CEL` file, and the second column will have the class label (e.g., normal, tumor) associated with that sample.
+
 If you want to use the Sample data for classification:
      ```
      cp SampleData/* ../DataFiles
      ```
-This command will copy all of the data and `sampleList.txt files` in the `SampleData` directory to the `DataFiles` directory.  
+This command will copy the data and `sampleList.txt files` from `SampleData` directory into the `DataFiles` directory.
      
 #### 1. Initialization
 
-  Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please go inside  the `Scripts` directory to      execute the next steps of the pipeline.
+  Once you have finished making the `sampleList.txt` file in the `DataFiles` directory, please visit  the `Scripts` directory to      execute the next steps of the pipeline.
 
-  There are two versions of the pipeline, `BASH` and `SLURM` (Simple Linux Utility for Resource Management). `SLURM` is a computational    architecture used to organize user requests into a queue to utilize super-computer resources. `SLURM` requires no kernel         modifications for its operation and is relatively self-contained. Depending on your access to a `SLURM` scheduler, you will use one or    another set of scripts. If you do have access to a `SLURM` scheduler you will execute the scripts ending in `.slurm`. Otherwise, you will use the scripts ending in `.bash` . Due to the complexity of data manipulation, and/or the sheer size of your data, it is recommended to use a high-performance computer. 
+  There are two versions of the pipeline, `BASH` and `SLURM` (Simple Linux Utility for Resource Management). Depending on your access to a `SLURM` scheduler, you will use one or    another set of scripts. If you do have access to a `SLURM` scheduler you will execute the scripts ending in `.slurm`. Otherwise, you will use the scripts ending in `.bash` . Due to the complexity of data manipulation, and/or the sheer size of your data, it is recommended to use SLURM scripts on a high-performance computer.
 
-   Now, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization and background correction and data partitioning are:
+   Next, in the `Scripts` directory, edit the file called `Configuration.txt`, to make any changes desired for processing your data    including the normalization method, the size of data partitions, and which feature selection and classification algorithms are to be executed . The default settings for normalization and background correction and data partitioning are:
  
       - Normalization: `normMethod="quantiles"`
       - Background correction: `bgCorrectMethod="rma"`
@@ -90,9 +91,6 @@ This command will copy all of the data and `sampleList.txt files` in the `Sample
       - Random Forest   
       - Support Vector Machine    
       
-  If you wish to use classification algorithms other than the ones provided, please refer to the `WEKA` resources at http://weka.wikispaces.com/Primer. 
-  In the configuration file you will also need to write in the absolute path. This path should end in `CancerDiscover`; for example a directory path might look like: `work/userGroup/userMember/data/CancerDiscover`
-
 ```
    cd ../Scripts
    bash initialization.bash
@@ -109,7 +107,7 @@ For `SLURM` users:
 sbatch masterScript_1.slurm
 ```
    
-  The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*. For other options, refer to https://www.bioconductor.org/packages/devel/bioc/vignettes/affy/inst/doc/builtinMethods.pdf
+  The  purpose of the above script is to perform normalization on raw `CEL` data and generate the *Expression set matrix*.
      
 #### 3. Feature Selection
 
