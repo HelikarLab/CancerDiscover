@@ -59,6 +59,8 @@ To install CancerDiscover dependencies right from scratch, check out our exhaust
 ### Directory Structure of the Pipeline
 * [Directory Structure](https://github.com/HelikarLab/CancerDiscover/wiki/Directory-Structure-of-the-Pipeline)
 
+### Execution of Pipeline
+* [execution-of-pipeline](https://github.com/HelikarLab/CancerDiscover/wiki/Execution-of-CancerDiscover)
 
 ### Contribution
 
