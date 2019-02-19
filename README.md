@@ -26,10 +26,8 @@
 
 **CancerDiscover** is an open source command line pipeline tool (released under the [GNU General Public License v3](LICENSE.md)) that allow users to efficiently and automatically process large high-throughput datasets by converting data (for example CEL files, etc.), normalizing, and selecting best performing features from multiple feature selection algorithms. The pipeline lets users apply different feature thresholds and various learning algorithms to generate multiple prediction models that distinguish different types and subtypes of cancer.
 
-**Cite:**
-[CancerDiscover: an integrative pipeline for cancer biomarker and cancer class prediction from high-throughput sequencing data](https://doi.org/10.18632/oncotarget.23511) 
-
-*Mohammed, A., Biegert, G., Adamec, J., & Helikar, T. (2018). CancerDiscover: an integrative pipeline for cancer biomarker and cancer class prediction from high-throughput sequencing data. Oncotarget, 9(2), 2565–2573. doi:10.18632/oncotarget.23511*
+**Cite:** If you use our tool, please cite 
+*Mohammed, A., Biegert, G., Adamec, J., & Helikar, T. (2018). **CancerDiscover: an integrative pipeline for cancer biomarker and cancer class prediction from high-throughput sequencing data.** Oncotarget, 9(2), 2565–2573. (https://doi.org/10.18632/oncotarget.23511)*
 
 ***Note***: CancerDiscover is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/HelikarLab/CancerDiscover/issues).
 
@@ -64,13 +62,13 @@ To install CancerDiscover dependencies right from scratch, check out our exhaust
 
 ### Contribution
 
-  Akram Mohammed	amohammed3@unl.edu
+  Dr. Akram Mohammed	akrammohd@gmail.com
+  
+  Dr. Tomas Helikar (PI)		thelikar2@unl.edu
+  
+  Dr. Jiri Adamec		jadamec2@unl.edu
   
   Greyson Biegert	greyson@huskers.unl.edu
-  
-  Jiri Adamec		jadamec2@unl.edu
-
-  Tomas Helikar		thelikar2@unl.edu
 
 ### License
 This software has been released under the [GNU General Public License v3](LICENSE.md).
